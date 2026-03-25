@@ -55,6 +55,18 @@ public class Database extends SQLiteOpenHelper {
         return result;
     }
 
+    public String getEmail(String username) {
+        String email = "";
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("select email from users where username=?", new String[]{username});
+        if (c.moveToFirst()) {
+            email = c.getString(0);
+        }
+        c.close();
+        db.close();
+        return email;
+    }
+
     public void addCart(String username, String product, float price, String otype) {
         ContentValues cv = new ContentValues();
         cv.put("username", username);
@@ -114,11 +126,11 @@ public class Database extends SQLiteOpenHelper {
         db.close();
     }
 
-    public Cursor getOrderData(String username) {
+    public Cursor getOrderDataOnly(String username) {
         String str[] = new String[1];
         str[0] = username;
         SQLiteDatabase db = getReadableDatabase();
-        return db.rawQuery("select * from orderplace where username=?", str);
+        return db.rawQuery("select * from orderplace where username=? and otype != 'appointment'", str);
     }
 
     public int checkAppointmentExists(String username, String fullname, String address, String contact, String date, String time) {
@@ -146,5 +158,18 @@ public class Database extends SQLiteOpenHelper {
         str[1] = "appointment";
         SQLiteDatabase db = getReadableDatabase();
         return db.rawQuery("select * from orderplace where username=? and otype=?", str);
+    }
+
+    public int getCount(String username, String otype) {
+        int count = 0;
+        String str[] = new String[2];
+        str[0] = username;
+        str[1] = otype;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("select * from orderplace where username=? and otype=?", str);
+        count = c.getCount();
+        c.close();
+        db.close();
+        return count;
     }
 }

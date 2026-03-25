@@ -39,6 +39,8 @@
         <activity android:name=".HealthArticlesDetailsActivity" />
         <activity android:name=".OrderDetailsActivity" />
         <activity android:name=".MyAppointmentsActivity" />
+        <activity android:name=".DashboardActivity" />
+        <activity android:name=".CareAssistantActivity" />
         <activity android:name=".MainActivity" />
     </application>
 

@@ -42,18 +42,14 @@ public class OrderDetailsActivity extends AppCompatActivity {
         Database db = new Database(getApplicationContext(), "health", null, 1);
         SharedPreferences sharedpreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
         String username = sharedpreferences.getString("username", "").toString();
-        Cursor c = db.getOrderData(username);
+        Cursor c = db.getOrderDataOnly(username);
         order_details = new String[c.getCount()][5];
         if (c.moveToFirst()) {
             for (int i = 0; i < order_details.length; i++) {
                 order_details[i][0] = c.getString(1);
                 order_details[i][1] = c.getString(2);
                 order_details[i][2] = "Rs." + c.getString(7);
-                if (c.getString(8).compareTo("appointment") == 0) {
-                    order_details[i][3] = "Appt:" + c.getString(5) + " " + c.getString(6);
-                } else {
-                    order_details[i][3] = "Del:" + c.getString(5) + " " + c.getString(6);
-                }
+                order_details[i][3] = "Del:" + c.getString(5) + " " + c.getString(6);
                 order_details[i][4] = c.getString(8);
                 c.moveToNext();
             }
