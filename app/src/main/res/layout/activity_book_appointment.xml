@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#f5f5f5">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarBookAppointment"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         app:title="HealthConnect"
         app:titleTextColor="@color/white"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/toolbarBookAppointment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="24dp">
 
             <TextView
                 android:id="@+id/textViewAppTitle"
@@ -33,47 +41,67 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:layout_gravity="center"
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginBottom="24dp"/>
 
-            <EditText
-                android:id="@+id/editTextAppFullName"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Full Name"
-                android:inputType="text"
-                android:layout_marginBottom="10dp"
-                android:focusable="false"
-                android:autofillHints="name"/>
+                android:layout_marginBottom="12dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-            <EditText
-                android:id="@+id/editTextAppAddress"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextAppFullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Full Name"
+                    android:inputType="text"
+                    android:focusable="false" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Address"
-                android:inputType="text"
-                android:layout_marginBottom="10dp"
-                android:focusable="false"
-                android:autofillHints="postalAddress"/>
+                android:layout_marginBottom="12dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-            <EditText
-                android:id="@+id/editTextAppContactNumber"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextAppAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Address"
+                    android:inputType="text"
+                    android:focusable="false" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Contact Number"
-                android:inputType="text"
-                android:layout_marginBottom="10dp"
-                android:focusable="false"
-                android:autofillHints="phone"/>
+                android:layout_marginBottom="12dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-            <EditText
-                android:id="@+id/editTextAppFees"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextAppContactNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Contact Number"
+                    android:inputType="text"
+                    android:focusable="false" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Fees"
-                android:inputType="text"
-                android:layout_marginBottom="20dp"
-                android:focusable="false"
-                android:autofillHints="none"/>
+                android:layout_marginBottom="24dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextAppFees"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Fees"
+                    android:inputType="text"
+                    android:focusable="false" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/buttonAppDate"
@@ -81,7 +109,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Select Date"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="12dp"
+                android:padding="12dp"/>
 
             <Button
                 android:id="@+id/buttonAppTime"
@@ -89,13 +118,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Select Time"
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginBottom="24dp"
+                android:padding="12dp"/>
 
             <Button
                 android:id="@+id/buttonBookAppointment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Book Appointment"/>
+                android:text="Book Appointment"
+                android:padding="12dp"/>
 
             <Button
                 android:id="@+id/buttonAppBack"
@@ -103,8 +134,8 @@
                 android:layout_height="wrap_content"
                 android:text="Back"
                 android:layout_marginTop="10dp"
-                style="@style/Widget.MaterialComponents.Button.TextButton"/>
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:padding="12dp"/>
         </LinearLayout>
     </ScrollView>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
