@@ -34,6 +34,16 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp"/>
 
+            <EditText
+                android:id="@+id/editTextFDDisease"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter disease (e.g. Fever, Heart)"
+                android:inputType="text"
+                android:layout_marginBottom="20dp"
+                android:background="@android:drawable/editbox_background"
+                android:padding="12dp"/>
+
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -221,7 +231,7 @@
                 android:id="@+id/buttonSearchGoogle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Search Nearby Doctors on Google"
+                android:text="Search Nearby Doctors for Disease"
                 android:layout_marginTop="20dp"/>
 
             <Button
