@@ -10,7 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -21,7 +25,14 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_register);
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
         SharedPreferences sharedpreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
         if (sharedpreferences.contains("username")) {
@@ -40,6 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                finish();
             }
         });
 
@@ -57,14 +69,10 @@ public class RegisterActivity extends AppCompatActivity {
                     if (password.compareTo(confirm) == 0) {
                         if (isValid(password)) {
                             db.register(username, email, password);
-                            Toast.makeText(getApplicationContext(), "Record Inserted", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Registration Successful. Please Login.", Toast.LENGTH_SHORT).show();
                             
-                            // Automatically log in the user after registration
-                            SharedPreferences.Editor editor = sharedpreferences.edit();
-                            editor.putString("username", username);
-                            editor.apply();
-                            
-                            startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
+                            // Redirect to Login page instead of Home
+                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                             finish();
                         } else {
                             Toast.makeText(getApplicationContext(), "Password must contain at least 8 characters, having letter, digit and special symbol", Toast.LENGTH_SHORT).show();
