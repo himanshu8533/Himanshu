@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5f5f5"
+    android:background="@drawable/back2"
     tools:context=".MainActivity">
 
     <ScrollView
@@ -38,7 +38,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter disease (e.g., Fever, Heart)"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textColorHint="@color/colorWhite"
+                    android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -46,8 +48,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Search Doctors"
                 android:padding="12dp"
+                android:text="Search Doctors"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

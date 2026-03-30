@@ -4,19 +4,20 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5f5f5">
+    android:background="@drawable/back2">
 
     <TextView
         android:id="@+id/textViewBMTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="Buy Medicine"
+        android:textColor="@color/colorWhite"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/listViewBM"
@@ -34,24 +35,27 @@
         android:id="@+id/buttonBMGoToCart"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Go to Cart"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="8dp"
         android:padding="12dp"
+        android:text="Go to Cart"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/buttonBMBack"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonBMBack"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Back"
         android:layout_margin="16dp"
         android:padding="12dp"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:text="Back"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

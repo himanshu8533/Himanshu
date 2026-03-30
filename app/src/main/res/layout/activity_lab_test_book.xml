@@ -4,7 +4,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5f5f5">
+    android:background="@drawable/back2">
 
     <ScrollView
         android:layout_width="0dp"
@@ -25,10 +25,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
                 android:text="Book Lab Test"
+                android:textColor="@color/colorWhite"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="24dp"/>
+                android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -40,8 +41,11 @@
                     android:id="@+id/editTextLTBFullName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_baseline_person_24"
+                    android:drawablePadding="10dp"
                     android:hint="Full Name"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -54,8 +58,11 @@
                     android:id="@+id/editTextLTBAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_baseline_email_24"
+                    android:drawablePadding="10dp"
                     android:hint="Address"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -68,8 +75,11 @@
                     android:id="@+id/editTextLTBContact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableLeft="@android:drawable/stat_sys_speakerphone"
+                    android:drawablePadding="10dp"
                     android:hint="Contact Number"
-                    android:inputType="phone" />
+                    android:inputType="phone"
+                    android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -82,16 +92,20 @@
                     android:id="@+id/editTextLTBPincode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableLeft="@android:drawable/ic_lock_idle_lock"
+                    android:drawablePadding="10dp"
                     android:hint="Pincode"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/buttonLTBBooking"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="12dp"
                 android:text="Book Now"
-                android:padding="12dp"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>

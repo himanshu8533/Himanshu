@@ -4,7 +4,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5f5f5">
+    android:background="@drawable/back2">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarDoctorDetails"
@@ -22,13 +22,14 @@
         android:id="@+id/textViewDDTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="Doctor Details"
+        android:textColor="@color/colorWhite"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/toolbarDoctorDetails"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/toolbarDoctorDetails" />
 
     <ListView
         android:id="@+id/listViewDD"
@@ -46,11 +47,12 @@
         android:id="@+id/buttonDDBack"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Back"
         android:layout_margin="16dp"
         android:padding="12dp"
+        android:text="Back"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

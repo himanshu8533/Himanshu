@@ -4,7 +4,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5f5f5">
+    android:background="@drawable/back2">
 
     <ScrollView
         android:layout_width="0dp"
@@ -25,58 +25,66 @@
                 android:id="@+id/textViewMDProductName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Product Name"
-                android:textSize="24sp"
-                android:textStyle="bold"
                 android:layout_gravity="center"
                 android:layout_marginBottom="24dp"
-                android:textAlignment="center"/>
+                android:text="Product Name"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:text="Product Description:"
-                android:textStyle="bold"
+                android:textColor="@color/colorWhite"
                 android:textSize="18sp"
-                android:layout_marginBottom="8dp"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/editTextMDText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="200dp"
-                android:background="@android:drawable/editbox_background"
-                android:gravity="top"
-                android:padding="12dp"
-                android:focusable="false"
                 android:layout_marginBottom="24dp"
-                android:inputType="textMultiLine" />
+                android:background="@android:drawable/editbox_background"
+                android:focusable="false"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:minHeight="200dp"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textViewMDTotalCost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Cost: 0/-"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:layout_gravity="center"
-                android:layout_marginBottom="24dp"/>
+                android:layout_marginBottom="24dp"
+                android:text="Total Cost: 0/-"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/buttonMDAddToCart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="12dp"
                 android:text="Add to Cart"
-                android:padding="12dp"/>
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/buttonMDBack"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Back"
                 android:layout_marginTop="10dp"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:padding="12dp"/>
+                android:padding="12dp"
+                android:text="Back"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

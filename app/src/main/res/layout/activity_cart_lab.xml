@@ -4,7 +4,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5f5f5">
+    android:background="@drawable/back2">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarCartLab"
@@ -36,11 +36,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cart - Lab Tests"
-                android:textSize="24sp"
-                android:textStyle="bold"
                 android:layout_gravity="center"
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginBottom="20dp"
+                android:text="Cart - Lab Tests"
+                android:textColor="@color/colorWhite"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <ListView
                 android:id="@+id/listViewCart"
@@ -54,45 +55,53 @@
                 android:id="@+id/textViewCartTotalCost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Cost: 0/-"
-                android:textSize="18sp"
-                android:textStyle="bold"
                 android:layout_gravity="center"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginBottom="16dp"
+                android:text="Total Cost: 0/-"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/buttonAppDate"
                 style="?android:attr/spinnerStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Select Date"
                 android:layout_marginBottom="10dp"
-                android:padding="12dp"/>
+                android:padding="12dp"
+                android:text="Select Date"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/buttonAppTime"
                 style="?android:attr/spinnerStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Select Time"
                 android:layout_marginBottom="20dp"
-                android:padding="12dp"/>
+                android:padding="12dp"
+                android:text="Select Time"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/buttonCartCheckout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="12dp"
                 android:text="Checkout"
-                android:padding="12dp"/>
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/buttonCartBack"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Back"
                 android:layout_marginTop="10dp"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:padding="12dp"/>
+                android:padding="12dp"
+                android:text="Back"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

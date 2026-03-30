@@ -4,7 +4,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5f5f5">
+    android:background="@drawable/back2">
 
     <ScrollView
         android:layout_width="0dp"
@@ -26,11 +26,12 @@
                 android:id="@+id/textViewHATitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Article Title"
-                android:textSize="24sp"
-                android:textStyle="bold"
                 android:layout_marginBottom="24dp"
-                android:textAlignment="center"/>
+                android:text="Article Title"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/imageViewHA"
@@ -45,18 +46,20 @@
                 android:id="@+id/textViewHADetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Article Content..."
-                android:textSize="18sp"
+                android:layout_marginBottom="32dp"
                 android:lineSpacingExtra="4dp"
-                android:textColor="#333333"
-                android:layout_marginBottom="32dp"/>
+                android:text="Article Content..."
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/buttonHABack"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="12dp"
                 android:text="Back"
-                android:padding="12dp"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>
