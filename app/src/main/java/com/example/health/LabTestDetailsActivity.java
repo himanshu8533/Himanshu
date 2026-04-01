@@ -10,7 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 public class LabTestDetailsActivity extends AppCompatActivity {
 
@@ -21,7 +25,14 @@ public class LabTestDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_lab_test_details);
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
         tvPackageName = findViewById(R.id.textViewLTDPackageName);
         tvTotalCost = findViewById(R.id.textViewLTDTotalCost);
@@ -39,7 +50,7 @@ public class LabTestDetailsActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LabTestDetailsActivity.this, LabTestActivity.class));
+                getOnBackPressedDispatcher().onBackPressed();
             }
         });
 
@@ -47,7 +58,7 @@ public class LabTestDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 SharedPreferences sharedpreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
-                String username = sharedpreferences.getString("username", "").toString();
+                String username = sharedpreferences.getString("username", "");
                 String product = tvPackageName.getText().toString();
                 float price = Float.parseFloat(intent.getStringExtra("text3"));
 
@@ -57,7 +68,7 @@ public class LabTestDetailsActivity extends AppCompatActivity {
                 } else {
                     db.addCart(username, product, price, "lab");
                     Toast.makeText(getApplicationContext(), "Record Inserted to Cart", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LabTestDetailsActivity.this, LabTestActivity.class));
+                    finish(); // Return to previous screen instead of starting new intent
                 }
             }
         });

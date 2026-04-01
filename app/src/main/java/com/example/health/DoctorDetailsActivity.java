@@ -99,7 +99,7 @@ public class DoctorDetailsActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(DoctorDetailsActivity.this, FindDoctorActivity.class));
+                getOnBackPressedDispatcher().onBackPressed();
             }
         });
 

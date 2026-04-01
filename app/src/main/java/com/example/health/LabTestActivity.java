@@ -1,6 +1,7 @@
 package com.example.health;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -48,7 +49,7 @@ public class LabTestActivity extends AppCompatActivity {
     HashMap<String, String> item;
     ArrayList list;
     SimpleAdapter sa;
-    Button btnGoToCart, btnBack;
+    Button btnGoToCart, btnBack, btnSearchLabs;
     ListView listView;
 
     @Override
@@ -65,12 +66,31 @@ public class LabTestActivity extends AppCompatActivity {
 
         btnGoToCart = findViewById(R.id.buttonLTGoToCart);
         btnBack = findViewById(R.id.buttonLTBack);
+        btnSearchLabs = findViewById(R.id.buttonSearchLabs);
         listView = findViewById(R.id.listViewLT);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LabTestActivity.this, HomeActivity.class));
+                onBackPressed();
+            }
+        });
+
+        btnSearchLabs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String query = "diagnostic labs near me";
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + Uri.encode(query));
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+
+                if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(mapIntent);
+                } else {
+                    Uri webSearchUri = Uri.parse("https://www.google.com/search?q=" + Uri.encode(query));
+                    Intent webIntent = new Intent(Intent.ACTION_VIEW, webSearchUri);
+                    startActivity(webIntent);
+                }
             }
         });
 

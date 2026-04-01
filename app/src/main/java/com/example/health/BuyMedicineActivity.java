@@ -1,6 +1,7 @@
 package com.example.health;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -8,7 +9,11 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,16 +49,24 @@ public class BuyMedicineActivity extends AppCompatActivity {
     ArrayList list;
     SimpleAdapter sa;
     ListView lst;
-    Button btnBack, btnGoToCart;
+    Button btnBack, btnGoToCart, btnSearchMedicals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_buy_medicine);
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
         lst = findViewById(R.id.listViewBM);
         btnBack = findViewById(R.id.buttonBMBack);
         btnGoToCart = findViewById(R.id.buttonBMGoToCart);
+        btnSearchMedicals = findViewById(R.id.buttonSearchMedicals);
 
         btnGoToCart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +78,25 @@ public class BuyMedicineActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(BuyMedicineActivity.this, HomeActivity.class));
+                onBackPressed();
+            }
+        });
+
+        btnSearchMedicals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String query = "medical stores near me";
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + Uri.encode(query));
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+
+                if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(mapIntent);
+                } else {
+                    Uri webSearchUri = Uri.parse("https://www.google.com/search?q=" + Uri.encode(query));
+                    Intent webIntent = new Intent(Intent.ACTION_VIEW, webSearchUri);
+                    startActivity(webIntent);
+                }
             }
         });
 

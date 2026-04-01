@@ -16,7 +16,11 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -36,21 +40,24 @@ public class CartLabActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_cart_lab);
 
-        dateButton = findViewById(R.id.buttonAppDate); // Wait, I need to check if these IDs exist in activity_cart_lab
-        timeButton = findViewById(R.id.buttonAppTime); // They don't. I need to fix activity_cart_lab.xml first or use correct IDs.
-        // Re-reading activity_cart_lab.xml... It doesn't have date/time buttons.
-        // Usually, in these types of apps, date/time is selected during checkout or on the cart screen.
-        // Let me update activity_cart_lab.xml to include date and time selection.
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
+        dateButton = findViewById(R.id.buttonAppDate);
+        timeButton = findViewById(R.id.buttonAppTime);
         tvTotal = findViewById(R.id.textViewCartTotalCost);
         lst = findViewById(R.id.listViewCart);
         btnCheckout = findViewById(R.id.buttonCartCheckout);
         btnBack = findViewById(R.id.buttonCartBack);
 
         SharedPreferences sharedpreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
-        String username = sharedpreferences.getString("username", "").toString();
+        String username = sharedpreferences.getString("username", "");
 
         Database db = new Database(getApplicationContext(), "health", null, 1);
 
@@ -86,7 +93,7 @@ public class CartLabActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CartLabActivity.this, LabTestActivity.class));
+                onBackPressed();
             }
         });
 
@@ -101,7 +108,6 @@ public class CartLabActivity extends AppCompatActivity {
             }
         });
 
-        // I will update the XML to include these buttons.
         initDatePicker();
         dateButton.setOnClickListener(new View.OnClickListener() {
             @Override

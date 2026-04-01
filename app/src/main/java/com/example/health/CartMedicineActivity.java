@@ -14,7 +14,11 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -32,7 +36,14 @@ public class CartMedicineActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_cart_medicine);
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
         dateButton = findViewById(R.id.buttonAppDate);
         tvTotal = findViewById(R.id.textViewCartTotalCost);
@@ -41,7 +52,7 @@ public class CartMedicineActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.buttonCartBack);
 
         SharedPreferences sharedpreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
-        String username = sharedpreferences.getString("username", "").toString();
+        String username = sharedpreferences.getString("username", "");
 
         Database db = new Database(getApplicationContext(), "health", null, 1);
 
@@ -77,7 +88,7 @@ public class CartMedicineActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CartMedicineActivity.this, BuyMedicineActivity.class));
+                getOnBackPressedDispatcher().onBackPressed();
             }
         });
 

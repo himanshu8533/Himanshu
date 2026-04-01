@@ -15,7 +15,11 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import java.util.Calendar;
 
@@ -29,7 +33,14 @@ public class BookAppointmentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_book_appointment);
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
         tv = findViewById(R.id.textViewAppTitle);
         ed1 = findViewById(R.id.editTextAppFullName);
@@ -80,7 +91,7 @@ public class BookAppointmentActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(BookAppointmentActivity.this, FindDoctorActivity.class));
+                getOnBackPressedDispatcher().onBackPressed();
             }
         });
 
@@ -96,6 +107,7 @@ public class BookAppointmentActivity extends AppCompatActivity {
                     db.addOrder(username, title + " => " + fullname, address, contact, 0, dateButton.getText().toString(), timeButton.getText().toString(), Float.parseFloat(fees), "appointment");
                     Toast.makeText(getApplicationContext(), "Appointment booked successfully", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(BookAppointmentActivity.this, HomeActivity.class));
+                    finish();
                 }
             }
         });
