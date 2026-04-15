@@ -18,6 +18,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+
 public class HomeActivity extends AppCompatActivity {
 
     @Override
@@ -26,11 +29,17 @@ public class HomeActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        View mainView = findViewById(R.id.main);
+        ViewCompat.setOnApplyWindowInsetsListener(mainView, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Load animations
+        Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        Animation fadeInUp = AnimationUtils.loadAnimation(this, R.anim.fade_in_up);
+        mainView.startAnimation(fadeIn);
 
         Toolbar toolbar = findViewById(R.id.toolbarHome);
         setSupportActionBar(toolbar);
@@ -40,6 +49,24 @@ public class HomeActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Welcome " + username, Toast.LENGTH_SHORT).show();
 
         CardView exit = findViewById(R.id.cardLogout);
+        CardView findDoctor = findViewById(R.id.cardFindDoctor);
+        CardView labTest = findViewById(R.id.cardLabTest);
+        CardView orderDetails = findViewById(R.id.cardOrderDetails);
+        CardView buyMedicine = findViewById(R.id.cardBuyMedicine);
+        CardView healthArticles = findViewById(R.id.cardHealthArticles);
+        CardView myAppointments = findViewById(R.id.cardMyAppointments);
+        CardView careAssistant = findViewById(R.id.cardCareAssistant);
+
+        // Apply staggered animations to cards
+        findDoctor.startAnimation(fadeInUp);
+        labTest.startAnimation(fadeInUp);
+        buyMedicine.startAnimation(fadeInUp);
+        healthArticles.startAnimation(fadeInUp);
+        careAssistant.startAnimation(fadeInUp);
+        orderDetails.startAnimation(fadeInUp);
+        myAppointments.startAnimation(fadeInUp);
+        exit.startAnimation(fadeInUp);
+
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,7 +74,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        CardView findDoctor = findViewById(R.id.cardFindDoctor);
         findDoctor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,7 +81,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        CardView labTest = findViewById(R.id.cardLabTest);
         labTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,7 +88,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        CardView orderDetails = findViewById(R.id.cardOrderDetails);
         orderDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,7 +95,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        CardView buyMedicine = findViewById(R.id.cardBuyMedicine);
         buyMedicine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +102,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        CardView healthArticles = findViewById(R.id.cardHealthArticles);
         healthArticles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,7 +109,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        CardView myAppointments = findViewById(R.id.cardMyAppointments);
         myAppointments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,7 +116,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        CardView careAssistant = findViewById(R.id.cardCareAssistant);
         careAssistant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
