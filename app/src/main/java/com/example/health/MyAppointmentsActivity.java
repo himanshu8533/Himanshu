@@ -35,7 +35,7 @@ public class MyAppointmentsActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MyAppointmentsActivity.this, HomeActivity.class));
+                finish();
             }
         });
 

@@ -37,10 +37,60 @@ public class MedicineBookActivity extends AppCompatActivity {
         edcontact = findViewById(R.id.editTextMBContact);
         edpincode = findViewById(R.id.editTextMBPincode);
         btnBooking = findViewById(R.id.buttonMBBooking);
-        
-        // Ensure there is a back button in the layout or add listener to one if it exists
-        // Checking activity_medicine_book.xml... It doesn't have a back button. 
-        // I should probably add one to be consistent. 
-        // Wait, activity_medicine_book.xml has not been read recently. I'll read it.
+        btnBack = findViewById(R.id.buttonMBBack);
+
+        Intent intent = getIntent();
+        String priceStr = intent.getStringExtra("price");
+        String date = intent.getStringExtra("date");
+
+        btnBooking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String name = edname.getText().toString();
+                String address = edaddress.getText().toString();
+                String contact = edcontact.getText().toString();
+                String pincode = edpincode.getText().toString();
+
+                if (name.isEmpty() || address.isEmpty() || contact.isEmpty() || pincode.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Please fill all details", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                SharedPreferences sharedpreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
+                String username = sharedpreferences.getString("username", "");
+
+                Database db = new Database(getApplicationContext(), "health", null, 1);
+                
+                float amount = 0;
+                try {
+                    if (priceStr != null) {
+                        String[] parts = priceStr.split(":");
+                        if (parts.length > 1) {
+                            String val = parts[1].trim();
+                            if (val.endsWith("/-")) val = val.substring(0, val.length() - 2);
+                            amount = Float.parseFloat(val);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                db.addOrder(username, name, address, contact, Integer.parseInt(pincode), date, "", amount, "medicine");
+                db.removeCart(username, "medicine");
+                Toast.makeText(getApplicationContext(), "Booking done successfully", Toast.LENGTH_LONG).show();
+                
+                Intent it = new Intent(MedicineBookActivity.this, HomeActivity.class);
+                it.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(it);
+                finish();
+            }
+        });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getOnBackPressedDispatcher().onBackPressed();
+            }
+        });
     }
 }

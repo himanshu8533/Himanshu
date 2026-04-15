@@ -52,7 +52,7 @@ public class HealthArticlesDetailsActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HealthArticlesDetailsActivity.this, HealthArticlesActivity.class));
+                finish();
             }
         });
     }

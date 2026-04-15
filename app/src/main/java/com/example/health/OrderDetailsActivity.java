@@ -35,7 +35,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(OrderDetailsActivity.this, HomeActivity.class));
+                finish();
             }
         });
 
